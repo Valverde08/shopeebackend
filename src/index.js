@@ -11,8 +11,17 @@ const item2 = await createItem("pc 2 ", 2500, 5);
 await cartervice.addItem(myCart, item1);
 await cartervice.addItem(myCart, item2);
 
-await cartervice.deleteItem(myCart, item1.name);
+await cartervice.displayCart(myCart);
+
+await cartervice.deleteItem(myCart, item1.name)
+await cartervice.deleteItem(myCart, item2.name)
+
+// await cartervice.deleteItem(myCart, item1.name);
 
 await cartervice.displayCart(myCart);
 
-await cartervice.calculateTotal(myCart);
+await cartervice.deleteItem(myCart, item1.name)
+
+await cartervice.displayCart(myCart);
+
+

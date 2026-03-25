@@ -2,21 +2,26 @@ async function addItem(userCart, item) {
   userCart.push(item);
 }
 
-async function deleteItem(userCart, name) {
-  let index = userCart.findIndex((item) => item.name == name);
+async function deleteItem(userCart, name) {  
+  userCart.map((item, index)=>{
+      if(item.name === name){
+          if(item.quantity > 1){
+              item.quantity--
+              item.subtotal()
+              
+          } else {
+            userCart.splice(index,1)
+          }            
+          
+      }                 
+  })
 
-  let novoCart = userCart[index];
-  // if (index != 1){} userCart.splice(index, 1);
-
-  for (const item in novoCart) {
-    if (novoCart[item] === quantity) novoCart[item]--;
-  }
 }
 
 async function removeItem(userCart, index) {
   const deleteIndex = index - 1;
   //é a maior do que - e menor do que o carrinho
-  if ((index) => 0 && index < userCart.length) {
+  if (index >= 0 && index < userCart.length) {
     userCart.splice(deleteIndex, 1);
   }
 }
@@ -33,7 +38,7 @@ async function displayCart(useCart) {
   console.log("====================================");
   useCart.forEach((element, index) => {
     console.log(`${index + 1}. ${element.name}- R$${element.price} |
-       Quantity: ${element.quantity} | Subtotal  : ${element.subtotal()}
+       Quantity: ${element.quantity} | Subtotal  : ${element.quantity * element.price}
         `);
   });
 }
